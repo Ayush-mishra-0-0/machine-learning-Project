@@ -1,0 +1,21 @@
+
+train: C:/Users/Ayush/OneDrive/Documents/ml/krishi.ai/processed_data/FGVC8/train
+val: C:/Users/Ayush/OneDrive/Documents/ml/krishi.ai/processed_data/FGVC8/val
+# Classes
+nc: 12  # Number of classes
+
+# Class names
+names: [
+    'complex',
+    'frog_eye_leaf_spot',
+    'frog_eye_leaf_spot_complex',
+    'healthy',
+    'powdery_mildew',
+    'powdery_mildew_complex',
+    'rust',
+    'rust_complex',
+    'rust_frog_eye_leaf_spot',
+    'scab',
+    'scab_frog_eye_leaf_spot',
+    'scab_frog_eye_leaf_spot_complex'
+]
