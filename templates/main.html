@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishi.ai - Intelligent Plant Disease Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='img/pro.png') }}" alt="Krishi.ai Logo">
+            </div>
+            <a href="/">HOME</a>
+            <a href="/model">MODEL</a>
+            <a href="/dataset">DATASET</a>
+            <a href="/find">CHECK FOR NEW DATA</a>
+        </nav>
+    </header>
+
+    <!-- <div class="banner">
+        <img src="img/hd.jpeg" 
+             
+             sizes="100vw"
+             alt="Krishi.ai Banner" 
+             width="1920" height="1080">
+    </div> -->
+
+    <main>
+        <div class="container">
+            <section>
+                <div>
+                    <h1>
+                        Implementation of Paper: DFN-PSAN: Multi-level deep information feature fusion extraction
+                        network
+                        for interpretable plant disease classification
+
+                    </h1>
+                </div>
+            </section>
+            <section class="abstract-section">
+                <h2>Introduction</h2>
+                <div class="keywords">
+                    Keywords: Deep learning, Image processing, Feature fusion, Multilevel features, Pixel attention,
+                    Disease classification
+                </div>
+                <div class="abstract-content">
+                    <p>
+                        Accurate identification of crop diseases is an effective way to promote the development of
+                        intelligent and
+                        modernized agricultural production, as well as to reduce the use of pesticides and improve crop
+                        yield and quality.
+                        Deep learning methods have achieved better performance in classifying input plant disease
+                        images. However,
+                        many plant disease datasets are often constructed from controlled scenarios, and these deep
+                        learning models may
+                        not perform well when tested in real-world agricultural environments, highlighting the
+                        challenges of transitioning
+                        to natural farm environments under the new demand paradigm of <span class="highlight">Agri
+                            4.0</span>.
+                    </p>
+                    <p>
+                        Based on the above reasons, this work proposes using a <span class="highlight">multi-level deep
+                            information feature fusion extraction network (DFN-PSAN)</span> to
+                        achieve plant disease classification in natural field environments. DFN-PSAN adopts the YOLOv5
+                        Backbone and
+                        Neck network as the base structure DFN and uses pyramidal squeezed attention (PSA) combined with
+                        multiple
+                        convolutional layers to design a novel classification network PSAN, which fuses and processes
+                        the multi-level
+                        depth information features output from DFN and highlights the critical regions of plant disease
+                        images with
+                        the help of pixel-level attention provided by PSA, thus realizing effective classification of
+                        multiple fine-grained
+                        plant diseases.
+                    </p>
+                    <p>
+                        The proposed DFN-PSAN was trained and tested on three plant disease datasets. The average
+                        accuracy and F1-score exceeded <span class="highlight">95.27%</span>. The PSA attention
+                        mechanism saved <span class="highlight">26% of model parameters</span>,
+                        achieving a competitive performance among existing related methods. In addition, this work
+                        effectively enhances
+                        the transparency and interpretability of the model.
+                    </p>
+                </div>
+            </section>
+
+            <div class="dataset-info">
+                <h2>Motivation</h2>
+                <p>Agriculture is a cornerstone of national development, playing a critical role in the economy and food
+                    security. The following facts underscore the importance and urgency of improving crop disease
+                    identification:</p>
+                <ul>
+                    <li>According to the Food and Agriculture Organization (FAO), agricultural productivity is essential
+                        for ensuring food security for a growing global population.</li>
+                    <li>Crop diseases can reduce yields by up to 30% annually, leading to substantial economic losses
+                        for farmers (Jayagopal et al., 2022).</li>
+                    <li>Traditional methods of disease identification, such as manual inspection, are time-consuming and
+                        often ineffective, resulting in delayed responses to disease outbreaks.</li>
+                    <li>Early and accurate detection of diseases can significantly mitigate yield losses and improve the
+                        quality of crops, thus enhancing overall food security (Legrand, 2023).</li>
+                    <li>The rise of advanced technologies, such as machine learning and computer vision, offers new
+                        opportunities to transform crop disease detection by providing rapid, precise, and scalable
+                        solutions.</li>
+                </ul>
+                <p>By leveraging these technologies, this project aims to address the limitations of traditional
+                    methods, enabling more efficient disease identification and timely interventions. This approach
+                    promises to safeguard agricultural production, reduce economic impacts, and support national food
+                    security.</p>
+            </div>
+
+
+            <section class="model-details">
+                <h2>Novel Lightweight Deep Learning Model</h2>
+                <p>
+                    Based on the YOLOv5 network, we designed a novel lightweight deep learning model to identify plant
+                    diseases.
+                    The model, named <span class="highlight-green">DFN-PSAN</span>, improves upon the original YOLOv5
+                    network by:
+                </p>
+                <ul>
+                    <li>Keeping the feature extraction network (Backbone) and the feature fusion network (Neck)</li>
+                    <li>Removing the Head structure</li>
+                    <li>Designing a novel PSAN classification network structure for plant disease classification</li>
+                    <li>Implementing Pyramid Squeeze Attention (PSA) for PSAN, allowing the network to focus on
+                        important features and ignore unimportant ones</li>
+                </ul>
+
+                <h3>Main Contributions</h3>
+                <ol class="contribution-list">
+                    <li>The DFN structure obtains information on plant disease characteristics at different scales
+                        through image feature fusion techniques.</li>
+                    <li>The PSAN structure utilizes rich information on important semantic features, with the embedded
+                        PSA attention mechanism reinforcing important information and suppressing non-important
+                        information.</li>
+                    <li>A two-stage weather data augmentation technique is used for plant disease datasets in three real
+                        agricultural scenarios, improving model generalization and suppressing overfitting.</li>
+                    <li>The t-SNE method is used to interpret the feature layer data of the DFN-PSAN model through
+                        visualization of two-dimensional clustering distribution.</li>
+                    <li>The SHAP interpretable AI (XAI) visualization method explains whether DFN-PSAN correctly focuses
+                        on plant disease features or pattern information.</li>
+                </ol>
+            </section>
+            <section class="dataset-info">
+                <h2>Dataset Acquisition</h2>
+                <p>
+                    Three plant disease datasets constructed from actual scene collections were selected for this study,
+                    as they more accurately reflect the complex plant disease symptoms found in natural field
+                    environments.
+                </p>
+                <p>
+                    <strong>Key Dataset:</strong> Katra-Twelve, a public dataset of leaf images provided by the
+                    University of
+                    Shri Mata Vaishno Devi in Katra, consisting of healthy and diseased leaf samples.
+                </p>
+                <p>
+                    <strong>Note:</strong> The PlantVillage open-source plant disease dataset was not used due to its
+                    uniform
+                    background, which doesn't accurately represent real-world conditions.
+                    <span class="ellipsis"> <a href="/dataset" class="more-link">Read More</a></span>
+                </p>
+            </section>
+            <!-- <h1>What is a pre-trained model?</h1>
+            <p>
+                A pre-trained model, whether in the visual or textual domain, refers to a machine learning model that
+                undergoes initial training on a large and diverse dataset before being fine-tuned for specific tasks. In
+                the textual domain, models like OpenAI's GPT (Generative Pre-trained Transformer) are pre-trained on
+                extensive text data from the internet, acquiring a comprehensive understanding of language structure,
+                context, and semantics. Similarly, in the visual domain, models based on architectures like
+                Convolutional Neural Networks (CNNs), such as VGG or ResNet, are pre-trained on vast image datasets to
+                learn general features and representations of visual data, such as edges and textures.
+            </p>
+
+            <h2>Why use pre-trained models?</h2>
+            <p>
+                Pre-trained models are employed in both the visual and textual domains for their ability to leverage
+                large and diverse datasets during initial training, capturing general patterns and knowledge inherent in
+                the data. In the textual domain, models like GPT learn language nuances, syntactic structures, and
+                contextual relationships, providing a foundation for various natural language processing tasks. In the
+                visual domain, pre-trained models based on CNNs grasp hierarchical features and representations of
+                visual data, facilitating tasks like image classification or object detection.
+            </p> -->
+
+            <!-- <h2>MAIN WORK</h2>
+            <p>
+                Enhancing Plant Disease Diagnosis: Innovative Multimodal Datasets and Pre-trained Models for Improved
+                Accuracy and Efficiency
+            </p> -->
+
+            <div class="work-section">
+                <div class="work-card">
+                    <img src="{{ url_for('static', filename='img/model-st.jpeg') }}" alt="DFN-PSAN Model">
+                    <!-- <img src="img/model-st.jpeg" alt="DFN-PSAN Model"> -->
+                    <h3>DFN-PSAN: Multi-level deep information feature fusion extraction network for
+                        interpretable plant disease classification</h3>
+                    <p>
+                        Key highlights of the paper include:
+                        <hr>
+                        1. Model Architecture: DFN-PSAN is built upon the YOLOv5 Backbone and Neck network, which
+                        serves as the base structure (DFN). It integrates pyramid squeeze attention (PSA) with
+                        multiple convolutional layers to design a novel classification network (PSAN).
+                        <span class="ellipsis"> <a href="/model" class="more-link">Read More</a></span>
+                    </p>
+                    <a href="https://www.sciencedirect.com/science/article/pii/S0168169923008694">Read Paper</a>
+                </div>
+                <!-- Add more work cards as needed -->
+            </div>
+        </div>
+    </main>
+
+    <section class="about-us">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>ABOUT US</h2>
+                    <p>
+                        Welcome to Our Plant Disease Diagnostic Platform. The paper titled "DFN-PSAN: Multi-level deep
+                        information feature fusion extraction network for interpretable plant disease classification" by
+                        Guowei Dai et al. presents a novel deep learning model for classifying plant diseases in natural
+                        field environments. The model, DFN-PSAN (Deep Feature Network with Pyramid Squeeze Attention
+                        Network),
+                        leverages a multi-level deep information feature fusion extraction network to effectively
+                        classify
+                        fine-grained plant diseases.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <!-- <img src="img/about-us.jpg" alt="About Krishi.ai"> -->
+                    <img src="{{ url_for('static', filename='img/banner.jpeg') }}" alt="DFN-PSAN Model">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="our-commitments">
+        <div class="container">
+            <h2>Our Commitments</h2>
+            <p>
+                Safeguard the health of your plants starting now! Let's contribute together to a greener world.
+            </p>
+            <div class="commitment-cards">
+                <div class="commitment-card">
+                    <h3>Elevated Diagnostic Precision</h3>
+                    <p>
+                        Leveraging advanced artificial intelligence, our plant disease recognition service enhances
+                        diagnostic precision, ensuring users receive reliable results.
+                    </p>
+                </div>
+                <div class="commitment-card">
+                    <h3>Cost-Effective Training</h3>
+                    <p>
+                        With meticulously crafted pre-trained models, we significantly lower training costs, making
+                        plant disease recognition more economically efficient.
+                    </p>
+                </div>
+                <!-- Add more commitment cards as needed -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="static/img/pro.png" alt="Krishi.ai Logo">
+                    <p>Intelligent Plant Disease Recognition</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">IIT BHILAI</a>
+                    <a href="#">Krishi.ai</a>
+                </div>
+                <div class="footer-contact">
+                    <p>Phone: 9310808926</p>
+                    <p>Address: IIT BHILAI</p>
+                    <p>Email: ayushkum@iitbhilai.ac.in</p>
+                </div>
+            </div>
+            <p class="copyright">Copyright © All Rights Reserved</p>
+        </div>
+    </footer>
+</body>
+
+</html>

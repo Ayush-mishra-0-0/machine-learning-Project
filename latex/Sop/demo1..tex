@@ -1,0 +1,142 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+\title{DFN-PSAN: Multi-level deep information feature fusion extraction network for interpretable plant disease classification}
+\author{Your Name}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+\textbf{Keywords:} Deep learning, Image processing, Feature fusion, Multilevel features, Pixel attention, Disease classification
+
+Accurate identification of crop diseases is an effective way to promote the development of intelligent and modernized agricultural production, as well as to reduce the use of pesticides and improve crop yield and quality. Deep learning methods have achieved better performance in classifying input plant disease images. However, many plant disease datasets are often constructed from controlled scenarios, and these deep learning models may not perform well when tested in real-world agricultural environments, highlighting the challenges of transitioning to natural farm environments under the new demand paradigm of Agri 4.0.
+
+Based on the above reasons, this work proposes using a multi-level deep information feature fusion extraction network (DFN-PSAN) to achieve plant disease classification in natural field environments. DFN-PSAN adopts the YOLOv5 Backbone and Neck network as the base structure DFN and uses pyramidal squeezed attention (PSA) combined with multiple convolutional layers to design a novel classification network PSAN, which fuses and processes the multi-level depth information features output from DFN and highlights the critical regions of plant disease images with the help of pixel-level attention provided by PSA, thus realizing effective classification of multiple fine-grained plant diseases.
+
+The proposed DFN-PSAN was trained and tested on three plant disease datasets. The average accuracy and F1-score exceeded 95.27\%. The PSA attention mechanism saved 26\% of model parameters, achieving a competitive performance among existing related methods. In addition, this work effectively enhances the transparency and interpretability of the model.
+
+\section{Motivation}
+Agriculture is a cornerstone of national development, playing a critical role in the economy and food security. The following facts underscore the importance and urgency of improving crop disease identification:
+
+\begin{itemize}
+  \item According to the Food and Agriculture Organization (FAO), agricultural productivity is essential for ensuring food security for a growing global population.
+  \item Crop diseases can reduce yields by up to 30\% annually, leading to substantial economic losses for farmers (Jayagopal et al., 2022).
+  \item Traditional methods of disease identification, such as manual inspection, are time-consuming and often ineffective, resulting in delayed responses to disease outbreaks.
+  \item Early and accurate detection of diseases can significantly mitigate yield losses and improve the quality of crops, thus enhancing overall food security (Legrand, 2023).
+  \item The rise of advanced technologies, such as machine learning and computer vision, offers new opportunities to transform crop disease detection by providing rapid, precise, and scalable solutions.
+\end{itemize}
+
+By leveraging these technologies, this project aims to address the limitations of traditional methods, enabling more efficient disease identification and timely interventions. This approach promises to safeguard agricultural production, reduce economic impacts, and support national food security.
+
+\section{Novel Lightweight Deep Learning Model}
+Based on the YOLOv5 network, we designed a novel lightweight deep learning model to identify plant diseases. The model, named DFN-PSAN, improves upon the original YOLOv5 network by:
+
+\begin{itemize}
+  \item Keeping the feature extraction network (Backbone) and the feature fusion network (Neck)
+  \item Removing the Head structure
+  \item Designing a novel PSAN classification network structure for plant disease classification
+  \item Implementing Pyramid Squeeze Attention (PSA) for PSAN, allowing the network to focus on important features and ignore unimportant ones
+\end{itemize}
+
+\section{Main Contributions}
+\begin{itemize}
+  \item The DFN structure obtains information on plant disease characteristics at different scales through image feature fusion techniques.
+  \item The PSAN structure utilizes rich information on important semantic features, with the embedded PSA attention mechanism reinforcing important information and suppressing non-important information.
+  \item A two-stage weather data augmentation technique is used for plant disease datasets in three real agricultural scenarios, improving model generalization and suppressing overfitting.
+  \item The t-SNE method is used to interpret the feature layer data of the DFN-PSAN model through visualization of two-dimensional clustering distribution.
+  \item The SHAP interpretable AI (XAI) visualization method explains whether DFN-PSAN correctly focuses on plant disease features or pattern information.
+\end{itemize}
+
+% Continue with other sections...
+
+\section{Technical Details}
+\begin{itemize}
+  \item Image processing: VS code and Python 3.10
+  \item Deep learning framework: PyTorch 1.13.1 + cu117
+  \item Image processing library: OpenCV
+  \item Hardware acceleration: GPU
+\end{itemize}
+
+\section{DFN-PSAN Architecture with PSA}
+The DFN-PSAN (Deep Fusion Network with Pyramid Squeeze Attention Network) architecture is an improvement of YOLOv5, designed for more accurate plant disease detection. It focuses on enhanced feature extraction and classification through the use of Pyramid Squeeze Attention (PSA), which boosts the model's ability to focus on important features in plant images.
+
+\subsection{Key Components}
+\subsubsection{YOLOv5 for Feature Extraction}
+YOLOv5, a real-time object detection model, handles feature extraction. While YOLOv5n offers speed and low weight, it lacks deep feature extraction capability. To address this, DFN-PSAN introduces modifications to improve feature extraction, fusion, and convergence speed.
+
+\subsubsection{YOLOv5 Architecture}
+\textbf{Backbone:} Utilizes CSPDarkNet with a 6 × 6 convolutional layer replacing the older Focus structure.
+
+\textbf{SPP Module:} Expands the receptive field, extracting both local and global features through max-pooling at various scales. The operation can be represented as:
+
+\begin{equation}
+SPP(FM) = Concat(MaxPool(FM,k_1), MaxPool(FM,k_2), MaxPool(FM,k_3))
+\end{equation}
+
+where $FM$ is the input feature map and $k_i$ are the pooling kernel sizes.
+
+\subsubsection{Neck (DFN)}
+The Neck combines the Feature Pyramid Network (FPN) and Path Aggregation Network (PAN). The FPN upscales feature maps from lower levels to capture high-level semantic information, while the PAN downscales feature maps from higher levels to improve localization accuracy. This can be described mathematically as:
+
+\begin{equation}
+FPN(x) = Upsample(x) + SkipConnection(x)
+\end{equation}
+\begin{equation}
+PAN(x) = Downsample(x) + SkipConnection(x)
+\end{equation}
+
+where $x$ represents the feature maps at various levels of the network.
+
+\subsubsection{PSAN Classification Layer}
+The PSAN classification layer replaces YOLOv5's Head to enhance classification performance. The Pyramid Squeeze Attention mechanism refines the focus on important features using:
+
+\begin{equation}
+PSA(FM) = GAP(Attention(FM))
+\end{equation}
+
+where $GAP$ represents Global Average Pooling and $Attention$ denotes the attention mechanism applied to the feature map $FM$.
+
+\subsubsection{Feature Fusion and Attention}
+The Neck structure integrates features from various layers, improving the network's ability to handle objects at different scales. The attention mechanism, which can be expressed as:
+
+\begin{equation}
+Attention(FM) = \sigma(W \cdot FM + b)
+\end{equation}
+
+where $\sigma$ is the activation function, $W$ is the weight matrix, and $b$ is the bias, enhances the focus on relevant features. Classification is performed using the Softmax function:
+
+\begin{equation}
+Softmax(x_i) = \frac{e^{x_i}}{\sum_j e^{x_j}}
+\end{equation}
+
+which converts the output logits into probabilities for each class.
+
+\subsubsection{Training}
+Training involves updating the model parameters using a deep neural network with 30 hyperparameters. The optimization process minimizes the cross-entropy loss function with label smoothing, which can be expressed as:
+
+\begin{equation}
+Loss = -\sum_{i=1}^N y_i \log(p_i)
+\end{equation}
+
+where $N$ is the total number of categories, $y_i$ is the prediction result for category $i$, $p_i$ is the confidence score of the network output for category $i$, and $\epsilon$ is the label smoothing hyperparameter. Label smoothing modifies $y_i$ as follows:
+
+\begin{equation}
+y_i = 
+\begin{cases} 
+1 - \epsilon & \text{if } i \text{ is the target category} \\
+\frac{\epsilon}{N} & \text{if } i \text{ is not the target category}
+\end{cases}
+\end{equation}
+
+The loss function with label smoothing helps improve the model's generalization by preventing it from becoming too confident about its predictions.
+
+\section{Conclusion}
+The DFN-PSAN architecture, through its enhancements and mathematical formulations, achieves superior plant disease detection by integrating advanced feature extraction, attention mechanisms, and effective classification methods.
+
+\end{document}

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishi.ai - Intelligent Plant Disease Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <style>
+        .download-btn {
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            justify-content: right;
+            background-color: #081b30;
+            /* Bootstrap blue */
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-btn:hover {
+            background-color: #0b2a4b;
+            /* Darker shade on hover */
+        }
+
+        .download-btn:active {
+            background-color: #003f7f;
+            /* Even darker when clicked */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        hr {
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='img/pro.png') }}" alt="Krishi.ai Logo">
+            </div>
+            <a href="/">HOME</a>
+            <a href="/model">MODEL</a>
+            <a href="/dataset">DATASET</a>
+            <a href="/find">CHECK FOR NEW DATA</a>
+        </nav>
+    </header>
+    <div class="container">
+
+        <h1>Plant Disease Dataset Information</h1>
+
+
+
+        <div class="abstract-section">
+            <h2>2.1. Acquisition of datasets</h2>
+            <p>
+                Three plant disease datasets constructed from actual scene collections were selected as validation
+                objects for this study:
+            </p>
+            <ol>
+                <li>
+                    <strong>Katra-Twelve:</strong> A public dataset of leaf images provided by the University of Shri
+                    Mata Vaishno Devi in Katra. It consists of 4503 images (2278 healthy, 2225 diseased) from 12 plants
+                    with 22 leaf types.
+                    <br>
+                    <a href="https://prod-dcd-datasets-cache-zipfiles.s3.eu-west-1.amazonaws.com/hb74ynkjcn-5.zip"
+                        class="download-btn">
+                        Download Katra-Twelve dataset
+                    </a>
+                </li>
+                <li>
+                    <strong>BARI-Sunflower:</strong> Constructed from the demonstration farm collection of Bangladesh
+                    Agricultural Research Institute (BARI), Gazipur. Contains 467 raw images of delicate leaves and
+                    infected sunflower leaves and flowers.
+                    <br>
+                    <a href="https://prod-dcd-datasets-cache-zipfiles.s3.eu-west-1.amazonaws.com/b83hmrzth8-1.zip"
+                        class="download-btn">
+                        Download BARI-Sunflower DATASET
+                    </a>
+                </li>
+                <li>
+                    <strong>FGVC8:</strong> Constructed by Cornell Initiative for Digital Agriculture (CIDA). Contains
+                    18,632 images with 12 categories of apple leaf diseases.
+                    <br>
+                    <a href="https://www.kaggle.com/competitions/plant-pathology-2021-fgvc8/data" class="download-btn">
+                        Download FGVC8 DATASET
+                    </a>
+                </li>
+
+            </ol>
+        </div>
+        <div class="container">
+            <h2>Table 1: Dataset Descriptions</h2>
+            <table>
+                <tr>
+                    <th>Classes</th>
+                    <th>Numbers diseased</th>
+                    <th>Numbers healthy</th>
+                </tr>
+                <tr>
+                    <td>Katra-Twelve</td>
+                    <td>265</td>
+                    <td>254</td>
+                </tr>
+                <tr>
+                    <td>Mango</td>
+                    <td>345</td>
+                    <td>276</td>
+                </tr>
+                <tr>
+                    <td>Alstonia Scholaris</td>
+                    <td>272</td>
+                    <td>120</td>
+                </tr>
+                <tr>
+                    <td>Jamun</td>
+                    <td>142</td>
+                    <td>232</td>
+                </tr>
+                <tr>
+                    <td>Pongamia Pinnata</td>
+                    <td>124</td>
+                    <td>77</td>
+                </tr>
+                <tr>
+                    <td>Pomegranate</td>
+                    <td>118</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Chinar</td>
+                    <td>170</td>
+                    <td>179</td>
+                </tr>
+                <tr>
+                    <td>Gauva</td>
+                    <td>279</td>
+                    <td>322</td>
+                </tr>
+                <tr>
+                    <td>Arjun</td>
+                    <td>287</td>
+                    <td>103</td>
+                </tr>
+                <tr>
+                    <td>Jatropha</td>
+                    <td>277</td>
+                    <td>220</td>
+                </tr>
+                <tr>
+                    <td>Lemon</td>
+                    <td>133</td>
+                    <td>159</td>
+                </tr>
+                <tr>
+                    <td>Bael</td>
+                    <td>—</td>
+                    <td>148</td>
+                </tr>
+                <tr>
+                    <td>Basil</td>
+                    <td>470</td>
+                    <td>509</td>
+                </tr>
+                <tr>
+                    <td>BARI-Sunflower</td>
+                    <td>398</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Downy mildew</td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Leaf scars</td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Gray mold</td>
+                    <td>512</td>
+                    <td>1602</td>
+                </tr>
+                <tr>
+                    <td>Fresh leaf</td>
+                    <td>3181</td>
+                    <td>165</td>
+                </tr>
+                <tr>
+                    <td>FGVC8</td>
+                    <td>1184</td>
+                    <td>87</td>
+                </tr>
+                <tr>
+                    <td>complex</td>
+                    <td>1860</td>
+                    <td>97</td>
+                </tr>
+                <tr>
+                    <td>frog_eye_leaf_spot</td>
+                    <td>120</td>
+                    <td>4826</td>
+                </tr>
+                <tr>
+                    <td>frog_eye_leaf_spot complex</td>
+                    <td>686</td>
+                    <td>200</td>
+                </tr>
+                <tr>
+                    <td>healthy</td>
+                    <td>4624</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>powdery_mildew</td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>powdery_mildew complex</td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>rust</td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>rust complex</td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>rust frog_eye_leaf_spot</td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>scab</td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>scab frog_eye_leaf_spot</td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>scab frog_eye_leaf_spot complex</td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="model-details">
+            <h2>Data Preprocessing</h2>
+            <p>Data preprocessing in this study is divided into two main stages, each with specific techniques to ensure
+                high-quality data for model training:</p>
+            <ol>
+                <li>
+                    <div class="abstract-section">
+                        <h2>Preliminary basic image preprocessing:</h2>
+                        <ul>
+                            <li><strong>Image read-in and format conversion:</strong> Initially, images are read using
+                                the OpenCV <code>imread</code> method, which by default reads images in BGR format.
+                                These images are then converted to RGB format using the <code>cvtColor</code> method to
+                                ensure consistency in color representation.</li>
+                            <li><strong>Adaptive scaling:</strong> To standardize image sizes and prevent loss of
+                                important image information, each image is scaled to a resolution of 256 × 256 pixels.
+                                This is achieved through adaptive scaling techniques that maintain image quality.</li>
+                            <li><strong>Gaussian filtering:</strong> The <code>GaussianBlur</code> method is applied to
+                                smooth the image and reduce noise. A Gaussian kernel of size 3 is used, which replaces
+                                each pixel’s value with the average value of its surrounding pixels, effectively
+                                minimizing noise and fine details.</li>
+                            <li><strong>Non-local mean noise reduction:</strong> To further reduce noise while
+                                preserving details, the <code>fastNlMeansDenoisingColored</code> method is employed.
+                                This technique uses parameters <code>h</code> and <code>hColor</code> set to 3 to
+                                maintain the texture and edges of the image while denoising.</li>
+                            <li><strong>Brightness and contrast adjustment:</strong> The <code>convertScaleAbs</code>
+                                method is used to adjust the image’s brightness and contrast. Parameters
+                                <code>α = 1.00</code> and <code>β = 0</code> are applied to control these properties,
+                                ensuring that the image has optimal visibility and contrast for feature extraction.
+                            </li>
+                        </ul>
+                    </div>
+
+                </li>
+                <li>
+
+                    <ul>
+                    </ul>
+                </li>
+            </ol>
+            <div class="abstract-section">
+                <h2>Weather Data Augmentation</h2>
+                <ul>
+                    <li>FGVC8: Six data augmentations per image for categories with sample volumes below 500</li>
+                    <li>Katra-Twelve and BARI-Sunflower: Two data augmentations per image</li>
+                    <li><strong>Solar illumination transformation:</strong> To simulate natural lighting conditions, the
+                        <code>RandomSunFlare</code> technique is used. Solar flares are added to the image with the
+                        appearance region determined by parameters (x_min, y_min, x_max, y_max). For this study, the
+                        upper right corner (0.9, 0, 1, 0.5) and upper left corner (0.0, 0.0, 1.0, 0.1) were chosen, and
+                        the aperture radius parameter was set to 300.
+                    </li>
+                    <li><strong>Raindrop transformation:</strong> The <code>RandomRain</code> technique simulates the
+                        effect of rain on images. This technique adds raindrops with a size of 1.0, using a drizzle type
+                        with a brightness coefficient of 0.6 to mimic realistic rain effects.</li>
+                    <li><strong>Shadow transformation:</strong> To account for natural shadow effects, the
+                        <code>RandomShadow</code> technique is employed. Shadows are added randomly, with the number of
+                        shadows varying between 1 and 5 and the side parameter of the shadow polygon set to 6 to
+                        represent realistic shadow patterns.
+                    </li>
+                    <li><strong>Fog transformation:</strong> To simulate foggy conditions, the <code>RandomFog</code>
+                        technique adds fog to different parts of the image. Fog intensity (fog coef) and fog circle
+                        transparency (alpha coef) are set between 0.25 and 0.8, with a fog parameter value of 0.3, to
+                        blur the background and simulate natural fog effects.</li>
+
+                </ul>
+            </div>
+
+            <p>The image processing and augmentation were performed using VSCode and Python 3.10, with PyTorch 1.13.1 +
+                cu117 and the OpenCV library, utilizing GPU acceleration for efficient processing. Due to dataset
+                imbalances in the FGVC8 dataset, six data augmentations per image were applied to categories with fewer
+                than 500 samples. The Katra-Twelve and BARI-Sunflower datasets underwent only two augmentations per
+                image. The effectiveness of the two-stage image processing, including both preliminary preprocessing and
+                weather data augmentation, is illustrated in Figures 2 and 3, showing the impact of these methods on
+                image quality and dataset robustness.</p>
+        </div>
+
+
+        <div class="dataset-info">
+            <h2>Technical Details</h2>
+            <ul>
+                <li>Image processing: Vs code and Python 3.10</li>
+                <li>Deep learning framework: Pytorch 1.13.1 + cu117</li>
+                <li>Image processing library: OpenCV</li>
+                <li>Hardware acceleration: GPU</li>
+            </ul>
+        </div>
+
+
+        <div class="dataset-info">
+            <h2>Dataset Division</h2>
+            <p>After preprocessing, the three new datasets were randomly divided into three parts:</p>
+            <ul>
+                <li>Training set: 80%</li>
+                <li>Validation set: 10%</li>
+                <li>Test set: 10%</li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="static/img/pro.png" alt="Krishi.ai Logo">
+                    <p>Intelligent Plant Disease Recognition</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">IIT BHILAI</a>
+                    <a href="#">Krishi.ai</a>
+                </div>
+                <div class="footer-contact">
+                    <p>Phone: 9310808926</p>
+                    <p>Address: IIT BHILAI</p>
+                    <p>Email: ayushkum@iitbhilai.ac.in</p>
+                </div>
+            </div>
+            <p class="copyright">Copyright © All Rights Reserved</p>
+        </div>
+    </footer>
+</body>
+
+</html>
